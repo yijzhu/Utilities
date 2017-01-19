@@ -57,7 +57,7 @@ function deepCopyByBFS(obj) {
 				});
 			} else if (typeStr === '[object Function]') {
 				val = function() {
-					return obj.apply(this, arguments);
+					return item.value.apply(this, arguments);
 				}
 			} else {
 				val = item.value;

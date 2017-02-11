@@ -1,4 +1,4 @@
-function qucikSort(arr) {
+function quickSort(arr) {
 	partition(arr, 0, arr.length-1);
 	return arr;
 }

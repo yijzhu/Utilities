@@ -1,0 +1,25 @@
+<html>
+<head>
+	<script src="../quicksort.js"></script>
+	<script src="renderer.js"></script>
+	<link rel="stylesheet" href="sortAnimationStyle.css" />
+</head>
+<body>
+	<button id="triggerBtn">Quick Sort</button>
+	<script type="text/javascript">
+
+	const arr = [3,2,5,1,6,4.5,3.5,8,4];
+
+	// Renderer
+	let renderer = new Renderer(arr);
+	renderer.render();
+	
+	document.getElementById('triggerBtn').addEventListener('click', () => {
+		let qs = new QuickSort(arr);
+		const {actions} = qs.sort();
+
+		renderer.showProcess(actions);
+	})
+	</script>
+</body>
+</html>

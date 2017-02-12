@@ -1,0 +1,18 @@
+.container {
+		display: flex;
+		align-items: flex-end;
+	}
+.bin {
+	flex: 0 0 auto;
+	border: 1px solid;
+	background-color: lightblue;
+	left: 0;
+	width: 200px;
+	box-sizing: border-box;
+	transition: none;
+}
+.active {
+	background-color: pink;
+	position: relative;
+	transition: left 2s;		
+}

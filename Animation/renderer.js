@@ -1,18 +1,20 @@
 class Renderer {
 	constructor(arr) {
 		this.array = arr;
+		this.binWidth = 100;
 	}
 
 	render() {
 		const container = document.createElement('div');
 		container.className = 'container';
+		const width = this.binWidth = Math.floor(window.outerWidth * 0.9 / this.array.length);
 		this.array.forEach(item => {
 			const height = this.getHeight(item);
 			const bin = document.createElement('div');
 			bin.id = item;
 			bin.innerHTML = item;
 			bin.classList.add('bin');
-			bin.setAttribute('style', `height:${height}px`);
+			bin.setAttribute('style', `width:${width}px;height:${height}px;`);
 			container.appendChild(bin);
 		})
 		document.body.appendChild(container);
@@ -50,7 +52,7 @@ class Renderer {
 		bin1.classList.add('active');
 		bin2.classList.add('active');
 
-		const offset = (j - i) * 200;
+		const offset = (j - i) * this.binWidth;
 		style1 = this.addStyle(style1, 'left', offset);
 		style2 = this.addStyle(style2, 'left', -offset);
 		bin1.setAttribute('style', style1)

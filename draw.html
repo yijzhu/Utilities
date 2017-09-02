@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Draw</title>
+    <script type="text/javascript">
+        function shuffle(array) {
+            var curInd = array.length, tmp, randInd;
+            // While there remain elements to shuffle
+            while (0 !== curInd) {
+                // Pick a remaining element
+                randInd = Math.floor(Math.random() * curInd);
+                curInd -= 1;
+
+                // And swap it with the current element.
+                tmp = array[curInd];
+                array[curInd] = array[randInd];
+                array[randInd] = tmp;
+            }
+            return array;
+        }
+        window.onload = function() {
+            var candidatesTextArea = document.getElementById('candidates');
+            var numInput = document.getElementById('num');
+            var resultDiv = document.getElementById('result');
+            
+            document.getElementById('pick').addEventListener('click', function() {
+                // Get options
+                var input = candidatesTextArea.value;
+                var candidates = input.split('\n');
+                var nonEmptyCandidates = candidates.filter(function(candidate) {
+                    return !!candidate;
+                })
+                // Get the desired number of option 
+                var num = parseInt(numInput.value) || 1;
+                numInput.value = num;
+
+                // Shuffle options and get the top {num} ones
+                var arr = shuffle(nonEmptyCandidates);
+                arr.length = parseInt(num);
+
+                // Show the options
+                var resHTML = arr.reduce(function(res, cur) {
+                    return res += '<p>' + cur + '</p>';
+                }, '');
+                resultDiv.innerHTML = resHTML;
+            });
+        }
+    </script>
+</head>
+<body>
+    <section>
+        <label for="candidates">Input：</label>
+        <textarea id="candidates" rows="30" cols="30" placeholder="One option per row"></textarea>
+        <br>
+        <label for="num">Number：</label>
+        <input type="number" id="num" value="1" min="1"/>
+    </section>
+    <button id="pick">Pick</button>
+    <section>
+        <label for="result">Result:</label>
+        <div id="result"></div>
+    </section>
+</body>
+</html>
